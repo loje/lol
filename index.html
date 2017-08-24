@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<title>你想成为英雄联盟里的谁</title>
+
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body onload="playNow();">
+		<button onclick="playPause();" class="music" id="playpause" type="button"></button>
+		<button onclick="playNow();" class="musicstop" id="playnow" type="button" style="display:none;"></button>
+		<audio id="player" loop="loop" autoplay="autoplay">
+			<source src="media/song.mp3" type="audio/mpeg">
+			Your browser does not support the audio element.
+		</audio>
+
+		<div class="container">
+			<div class="onepager index" id="pager1">
+				<div class="logo">
+					<div class="lol-logo">
+						<img class="loge-top" src="images/logo_top.png">
+					</div>
+					<div class="lol-logo">
+						<img class="loge-lol" src="images/lol_logo.png">
+					</div>
+					<div class="lol-logo">
+						<img class="loge-bottom" src="images/logo_bottom.png">
+					</div>
+					<div class="lol-logo">
+						<img class="logo-b" src="images/logo_b.png">
+					</div>
+					<div class="lol-logo">
+						<img class="logo-flashing" src="images/flashing.png">
+					</div>
+				</div>
+				<div class="turn"></div>
+				<div class="start">
+					<div class="circle1"></div>
+				</div>
+				<div class="start">
+					<div class="circle2"></div>
+				</div>
+				<div class="start">
+					<div class="circle3"></div>
+				</div>
+				<div class="start">
+					<div class="circle5">
+						<img src="images/enter.png">
+					</div>
+				</div>
+				<div class="start">
+					<div class="circle4">
+						<div class="startlol"></div>
+					</div>
+				</div>
+				<div class="start">
+					<a href="#" id="start" class="circle6"></a>
+				</div>
+
+				<div class="intro">
+					<p>
+						深职的学员们，给你们一个穿越的机会，
+						看看你们在英雄联盟里将重生为哪个英雄拯救世界！
+					</p>
+				</div>
+			</div>
+
+			<div class="onepager index" id="pager2" style="display:none;">
+				<div class="areaall">
+					<div class="chioce-map">
+						选择地图
+					</div>
+					<div id="east" class="btn area">
+						<input id="goeast" type="hidden" value="0">
+						<span>东区</span>
+					</div>
+					<div id="west" class="btn area">
+						<input id="gowest" type="hidden" value="0">
+						<span>西区</span>
+					</div>
+					<div id="north" class="btn area">
+						<input id="gonorth" type="hidden" value="0">
+						<span>北区</span>
+					</div>
+					<div id="other" class="btn area">
+						<input id="goother" type="hidden" value="0">
+						<span>乱入</span>
+					</div>
+
+					<div id="eastarea" class="eastarea" style="display:none;">
+						<button id="eastman" class="btn man"></button>
+						<button id="eastfeman" class="btn woman"></button>
+					</div>
+					<div id="westarea" class="westarea" style="display:none;">
+						<button id="westman" class="btn man"></button>
+						<button id="westfeman" class="btn woman"></button>
+					</div>
+					<div id="northarea" class="northarea" style="display:none;">
+						<button id="northman" class="btn man"></button>
+						<button id="northfeman" class="btn woman"></button>
+					</div>
+					<div id="otherarea" class="otherarea" style="display:none;">
+						<button id="otherman" class="btn man"></button>
+						<button id="otherfeman" class="btn woman"></button>
+					</div>
+
+					<!-- <button id="sex" class="btn" style="display:none;">下一步</button> -->
+				</div>
+
+				<div class="logo">
+					<div class="lol-logo">
+						<img class="logo-flashing" src="images/flashing.png">
+					</div>
+				</div>
+				<div class="turn"></div>
+				<div id="areaall"></div>
+			</div>
+
+			<div class="onepager index" id="pager3" style="display:none;">
+				<div class="otherbg" id="sharearea" style="display:none;">
+					<img src="images/share.png" class="sharetips">
+				</div>
+				<div class="otherbg" id="focusarea" style="display:none;">
+					<div class="qrcode">
+						<img src="images/qrcode.jpg">
+					</div>
+					<p>长按二维码关注我们</p>
+					<p><button id="close">close</button></p>
+				</div>
+				<div class="last">
+					<button class="otherbtn badge" id="sharebtn">炫</button>
+					<button class="otherbtn badge" id="focusbtn">目</button>
+				</div>
+
+				<div class="cardarea" id="cardarea">
+					<div id="eastcardbg" class="cardbg eastcard" style="display:none;">
+						<div class="fankai"><img src="images/fan.png"></div>
+						<div class="cardbg-logo"><img src="images/logo.png"></div>
+						<div class="mylogo"><img src="images/tou.jpg"></div>
+					</div>
+					<div id="westcardbg" class="cardbg westcard" style="display:none;">
+						<div class="fankai"><img src="images/fan.png"></div>
+						<div class="cardbg-logo"><img src="images/logo.png"></div>
+						<div class="mylogo"><img src="images/tou.jpg"></div>
+					</div>
+					<div id="northcardbg" class="cardbg northcard" style="display:none;">
+						<div class="fankai"><img src="images/fan.png"></div>
+						<div class="cardbg-logo"><img src="images/logo.png"></div>
+						<div class="mylogo"><img src="images/tou.jpg"></div>
+					</div>
+					<div id="othercardbg" class="cardbg othercard" style="display:none;">
+						<div class="fankai"><img src="images/fan.png"></div>
+						<div class="cardbg-logo"><img src="images/logo.png"></div>
+						<div class="mylogo"><img src="images/tou.jpg"></div>
+					</div>
+
+					<div id="eastcard" class="card" style="display:none;">
+						<div class="heropic" id="eastheropic"></div>
+						<div class="herointro">
+							<p id="easttestintro" class="testintro"></p>
+							<p id="eastwho" class="who"></p>
+							<p id="eastfrom" class="from"></p>
+						</div>
+						<div id="eastheroarea" class="heroarea"><img id="easticon"></div>
+					</div>
+					<div id="westcard" class="card" style="display:none;">
+						<div class="heropic" id="westheropic"></div>
+						<div class="herointro">
+							<p id="westtestintro" class="testintro"></p>
+							<p id="westwho" class="who"></p>
+							<p id="westfrom" class="from"></p>
+						</div>
+						<div id="westheroarea" class="heroarea"><img id="westicon"></div>
+					</div>
+					<div id="northcard" class="card" style="display:none;">
+						<div class="heropic" id="northheropic"></div>
+						<div class="herointro">
+							<p id="northtestintro" class="testintro"></p>
+							<p id="northwho" class="who"></p>
+							<p id="northfrom" class="from"></p>
+						</div>
+						<div id="northheroarea" class="heroarea"><img id="northicon"></div>
+					</div>
+					<div id="othercard" class="card" style="display:none;">
+						<div class="heropic" id="otherheropic"></div>
+						<div class="herointro">
+							<p id="othertestintro" class="testintro"></p>
+							<p id="otherwho" class="who"></p>
+							<p id="otherfrom" class="from"></p>
+						</div>
+						<div id="otherheroarea" class="heroarea"><img id="othericon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+
+		<script type="text/javascript">
+		//控制音乐播放
+		var myAideo=document.getElementById("player");
+		function playNow(){
+			myAideo.play();
+			$("#music").attr("style","-webkit-animation-play-state:running;");
+			$("#playnow").attr("style","display:none;");
+			$("#playpause").removeAttr("style");
+		}
+		function playPause(){
+			myAideo.pause();
+			$("#playpause").attr("style","display:none;");
+			$("#playnow").removeAttr("style");
+		}
+
+
+		$(document).ready(function(){
+			var wechatname = "微信昵称"; 
+
+			$("#pager1").height($(window).height());
+			$("#pager2").height($(window).height());
+
+			$("#start").click(function(){
+				$("#pager1").attr("style","display:none;");
+				$("#pager2").removeAttr("style");
+				$("#pager2").height($(window).height());					
+			});
+				
+			//东区
+			$("#east").click(function(){
+				$("#areaall").attr("class","eastactive");
+				$("#east").attr("class","btn area areasmool");
+				$("#west").attr("class","btn area");
+				$("#north").attr("class","btn area");
+				$("#other").attr("class","btn area");
+				$("#eastarea").removeAttr("style");
+				$("#westarea").attr("style","display:none");
+				$("#northarea").attr("style","display:none");
+				$("#otherarea").attr("style","display:none");
+			});
+
+
+			$("#eastman").click(function(){
+				var n = String(parseInt(Math.random()*(3-1+1) + 1)); //势力范围
+					
+				if(n == 1){
+					var n = "德玛西亚";
+					var m = String(parseInt(Math.random()*(3-1+1) + 1)); //英雄
+					$("#easticon").attr("src","images/demaxiya.png");
+
+					if(m == 1){
+						var m = "盖伦";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #cfa972; background-color: #362e2b;")
+							$("#easttestintro").attr("style","color: #FC6B58;")
+						})
+							
+						$("#eastheropic").html("<img src='images/gailun.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是德玛西亚之力，" + m );
+						$("#eastwho").html("明明是无畏先锋这种刚正面的领袖，偏偏喜欢上蹲草丛这种阴人的伎俩");
+						$("#eastfrom").html("别怕，我来了，抱紧我！");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+
+					}else if(m == 2){
+						var m = "赵信";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #3563A9; background-color: #0C2242;")
+							$("#easttestintro").attr("style","color: #F9F3E1;")
+						})
+							
+						$("#eastheropic").html("<img src='images/zhaoxin.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是德邦总管，" + m );
+						$("#eastwho").html("一往无前是气势问题，并不代表你就能来去自如了一朵菊花先到，随后枪出如龙");
+						$("#eastfrom").html("一朵菊花先到，随后枪出如龙");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+
+					}else if(m == 3){
+						var m = "嘉文四世";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #CF8E72; background-color: #3F1F1F;")
+							$("#easttestintro").attr("style","color: #FAC3AB;")
+						})
+
+						$("#eastheropic").html("<img src='images/jiawensishi.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是德玛西亚皇子，" + m );
+						$("#eastwho").html("下次有麻烦的时候，别把你的队友跟你圈到一起");
+						$("#eastfrom").html("我爸是李刚弱爆了，我爹是国王，不服站出来！");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}
+
+				}else if(n == 2){
+					var n = "艾欧尼亚";
+					var m = String(parseInt(Math.random()*(6-1+1) + 1)); //英雄
+					$("#easticon").attr("src","images/aiouniya.png");
+
+					if(m == 1){
+						var m = "亚索";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #98604C; background-color: #492D25;")
+							$("#easttestintro").attr("style","color: #E0BD9A;")
+						})
+
+						$("#eastheropic").html("<img src='images/yasuo.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是疾风剑豪，" + m );
+						$("#eastwho").html("逼格太高，只能看到你的背影。");
+						$("#eastfrom").html("落叶的一生，只是为了装逼吗？");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 2){
+						var m = "易";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #506298; background-color: #1D182D;")
+							$("#easttestintro").attr("style","color: #FC4D4D;")
+						})
+							
+						$("#eastheropic").html("<img src='images/yi.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是无极剑圣，" + m );
+						$("#eastwho").html("上天给了你冲刺的双脚，你却用它来偷东西跟逃跑。");
+						$("#eastfrom").html("我的贱就是你的贱");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 3){
+						var m = "韦鲁斯";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #cfa972; background-color: #362e2b;")
+							$("#easttestintro").attr("style","color: #ffffff;")
+						})
+							
+						$("#eastheropic").html("<img src='images/luweisi.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是惩戒之箭，" + m );
+						$("#eastwho").html("摆脱屌丝生活只需一步，改名，或者换个位置活着。");
+						$("#eastfrom").html("可怜那些被我射穿的人");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 4){
+						var m = "慎";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #506298; background-color: #1D182D;")
+							$("#easttestintro").attr("style","color: #FC4D4D;")
+						})
+							
+						$("#eastheropic").html("<img src='images/shen.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是暮光之眼，" + m );
+						$("#eastwho").html("注意你的队友有没有劫和锤石，因为你们一起共事可能对身体不好。");
+						$("#eastfrom").html("您果然深思熟虑");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 5){
+						var m = "凯南";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #987950; background-color: #452511;")
+							$("#easttestintro").attr("style","color: #FC4D4D;")
+						})
+						
+						$("#eastheropic").html("<img src='images/kainan.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是狂暴之心，" + m );
+						$("#eastwho").html("怎么就那么喜欢雷人呢？");
+						$("#eastfrom").html("闪电侠什么鬼？BOOMSHAKALAKA");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 6){
+						var m = "李青";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #506298; background-color: #1D182D;")
+							$("#easttestintro").attr("style","color: #FC4D4D;")
+						})
+
+						$("#eastheropic").html("<img src='images/liqing.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是盲僧，" + m );
+						$("#eastwho").html("即使双目失明，您还是努力成为了一名优秀的足疗专家和盲人按摩技师。");
+						$("#eastfrom").html("我用我的双手成就你的梦想");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}
+
+				}else if(n == 3){
+					var n ="班德尔城";
+					var m = String(parseInt(Math.random()*(5-1+1) + 1)); //英雄
+					$("#easticon").attr("src","images/bandeercheng.png");
+
+					if(m == 1){
+						var m = "黑默丁格";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+						})
+
+						$("#eastheropic").html("<img src='images/heimodingge.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是大发明家，" + m );
+						$("#eastwho").html("技术宅的导师和信仰，黑科技的忠实使用者以及开发人");
+						$("#eastfrom").html("我生来就是干这块的料");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 2){
+						var m = "吉格斯";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #506298; background-color: #1D182D;")
+							$("#easttestintro").attr("style","color: #FC4D4D;")
+						})
+
+						$("#eastheropic").html("<img src='images/jigesi.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是爆破鬼才，" + m );
+						$("#eastwho").html("因在市区燃放烟花而被治安拘留");
+						$("#eastfrom").html("炸你麻痹，起来嗨");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 3){
+						var m = "库奇";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #A6A4A2; background-color: #3F3B39;")
+							$("#easttestintro").attr("style","color: #DACFBF;")
+						})
+
+						$("#eastheropic").html("<img src='images/kuqi.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是英勇投弹手，" + m );
+						$("#eastwho").html("不要抱怨世界不公，有些人生下来就是被打的");
+						$("#eastfrom").html("菊花在燃烧");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 4){
+						var m = "提莫";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #5A9850; background-color: #202D18;")
+							$("#easttestintro").attr("style","color: #ffffff;")
+						})
+
+						$("#eastheropic").html("<img src='images/timo.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是迅捷斥候，" + m );
+						$("#eastwho").html("白天战场杀敌（并没有），晚上谱写班德尔人的爱恨情仇史诗巨著《小人时代》");
+						$("#eastfrom").html("我有特别的偷窥技巧");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 5){
+						var m = "维迦";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #CF7295; background-color: #41232E;")
+							$("#easttestintro").attr("style","color: #EFCC9F;")
+						})
+
+						$("#eastheropic").html("<img src='images/weijia.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是邪恶小法师，" + m );
+						$("#eastwho").html("我画个圈，你跟着我左手右手一个慢动作");
+						$("#eastfrom").html("我是正太！不许笑");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}
+				}
+ 
+				
+				$("#pager2").attr("style","display:none;");
+				$("#pager3").removeAttr("style");
+				$("#pager3").height($(window).height());
+				$("#eastcardbg").removeAttr("style");
+			})
+
+			$("#eastfeman").click(function(){
+				var n = String(parseInt(Math.random()*( 3 - 1 + 1 ) + 1)); //势力范围
+					
+				if(n == 1){
+					var n = "德玛西亚";
+					var m = String(parseInt(Math.random()*(5-1+1) + 1)); //英雄
+					$("#easticon").attr("src","images/demaxiya.png");
+
+					if(m == 1){
+						var m = "菲奥娜";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #98604C; background-color: #492D25;")
+							$("#easttestintro").attr("style","color: #E0BD9A;")
+						})
+
+						$("#eastheropic").html("<img src='images/feiaona.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是无双剑姬，" + m );
+						$("#eastwho").html("别人面对人生的障碍各种技能花样百出，您就这么推过去真的好吗？");
+						$("#eastfrom").html("别人也尝试过，但是只有我成功");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 2){
+						var m = "薇恩";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #3D2A5D; background-color: #171717;")
+							$("#easttestintro").attr("style","color: #C7C7C7;")
+						})
+
+						$("#eastheropic").html("<img src='images/weien.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是暗夜猎手，" + m );
+						$("#eastwho").html("不需要你有更强大的能力，要讨人喜欢你只需要换身衣服而已");
+						$("#eastfrom").html("天天和影子玩拳击，感觉要人格分裂");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 3){
+						var m = "拉克丝";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #98604C; background-color: #2B2E36;")
+							$("#easttestintro").attr("style","color: #E0BD9A;")
+						})
+
+						$("#eastheropic").html("<img src='images/lakesi.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是光辉女郎，" + m );
+						$("#eastwho").html("好好一个萌妹，别跟你哥哥一样老是阴人。");
+						$("#eastfrom").html("真是个深思熟虑的选择，骚年郎");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 4){
+						var m = "希瓦娜";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #6D3958; background-color: #312B36;")
+							$("#easttestintro").attr("style","color: #ffffff;")
+						})
+
+						$("#eastheropic").html("<img src='images/xiwana.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是龙血武姬，" + m );
+						$("#eastwho").html("空有小龙女的心，却长了侏罗纪的脸。");
+						$("#eastfrom").html("哼哼，你们从未面对像我这样的存在");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 5){
+						var m = "奎因";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #D45D5D; background-color: #3A1305;")
+							$("#easttestintro").attr("style","color: #FFC9C9;")
+						})
+
+						$("#eastheropic").html("<img src='images/kuiyin.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是德玛西亚之翼，" + m );
+						$("#eastwho").html("你存在的意义就是告诉对手你那么努力但其实顶个鸟用。");
+						$("#eastfrom").html("我不是鸟人，绝不是");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}
+
+				}else if(n == 2){
+					var n = "艾欧尼亚";
+					var m = String(parseInt(Math.random()*(5-1+1) + 1)); //英雄
+					$("#easticon").attr("src","images/aiouniya.png");
+
+					if(m == 1){
+						var m = "娑娜";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #98704C; background-color: #282A44;")
+							$("#easttestintro").attr("style","color: #E0BD9A;")
+						})
+
+						$("#eastheropic").html("<img src='images/suona.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是琴瑟仙女，" + m );
+						$("#eastwho").html("乳不巨何以聚人心的忠实执行人。");
+						$("#eastfrom").html("我的爱用意念传达给你");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 2){
+						var m = "阿狸";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #CF7288; background-color: #311720;")
+							$("#easttestintro").attr("style","color: #E0BD9A;")
+						})
+
+						$("#eastheropic").html("<img src='images/ali.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是九尾妖狐，" + m );
+						$("#eastwho").html("萌即正义，九尾狐即正义。");
+						$("#eastfrom").html("我们~来吗？");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 3){
+						var m = "阿卡丽";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #987061; background-color: #612919;")
+							$("#easttestintro").attr("style","color: #E2C4B8;")
+						})
+
+						$("#eastheropic").html("<img src='images/akali.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是暗影之拳，" + m );
+						$("#eastwho").html("甜起来是黏人，撕起来是不依不饶，怎么说都是甩不掉的麻烦女人。");
+						$("#eastfrom").html("我随影而来，随影而去，不带走一片云彩");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 4){
+						var m = "艾瑞莉娅";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #6D6D6D; background-color: #171717;")
+							$("#easttestintro").attr("style","color: #ffffff;")
+						})
+
+						$("#eastheropic").html("<img src='images/airuiliya.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是刀锋意志，" + m );
+						$("#eastwho").html("生而在世，总得背锅，你不背我背，反正都是我的错。");
+						$("#eastfrom").html("真正的意志是不会被击败的");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 5){
+						var m = "凯南";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #98604C; background-color: #492D25;")
+							$("#easttestintro").attr("style","color: #E0BD9A;")
+						})
+
+						$("#eastheropic").html("<img src='images/kainan.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是狂暴之心，" + m );
+						$("#eastwho").html("怎么就那么喜欢雷人呢？");
+						$("#eastfrom").html("闪电侠什么鬼？BOOMSHAKALAKA");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}
+
+				}else if(n == 3){
+					var n ="班德尔城";
+					var m = String(parseInt(Math.random()*(2-1+1) + 1)); //英雄
+					$("#easticon").attr("src","images/bandeercheng.png");
+
+					if(m == 1){
+						var m = "璐璐";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #9C487B; background-color: #3A0925;")
+							$("#easttestintro").attr("style","color: #E0BD9A;")
+						})
+
+						$("#eastheropic").html("<img src='images/lulu.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是仙灵女巫，" + m );
+						$("#eastwho").html("听说你有让人变大的魔力！");
+						$("#eastfrom").html("见到你，很高兴");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 2){
+						var m = "崔斯塔娜";
+						$("#eastcardbg").click(function(){
+							$("#eastcardbg").attr("style","display:none;");
+							$("#eastcard").removeAttr("style");
+							$("#eastcard").attr("style","border:5px solid #8C3C3C; background-color: #322B36;")
+							$("#easttestintro").attr("style","color: #ffffff;")
+						})
+
+						$("#eastheropic").html("<img src='images/cuisitana.png'>");
+						$("#easttestintro").html("尊敬的" + wechatname + "<br/>您是麦林炮手，" + m );
+						$("#eastwho").html("小小炮娘，很少烦恼，挺好挺好。");
+						$("#eastfrom").html("我好想射点什么");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}
+				}
+
+ 
+				
+				$("#pager2").attr("style","display:none;");
+				$("#pager3").removeAttr("style");
+				$("#pager3").height($(window).height());
+				$("#eastcardbg").removeAttr("style");
+			})
+
+
+			//西区
+			$("#west").click(function(){
+				$("#areaall").attr("class","westactive");
+				$("#west").attr("class","btn area areasmool");
+				$("#east").attr("class","btn area");
+				$("#north").attr("class","btn area");
+				$("#other").attr("class","btn area");
+				$("#eastarea").attr("style","display:none");
+				$("#westarea").removeAttr("style");
+				$("#northarea").attr("style","display:none");
+				$("#otherarea").attr("style","display:none");
+			})
+
+			$("#westman").click(function(){
+				var n = String(parseInt(Math.random()*(2-1+1) + 1)); //势力范围
+				
+				if(n == 1){
+					var n = "诺克萨斯";
+					var m = String(parseInt(Math.random()*(4-1+1) + 1)); //英雄
+					$("#westicon").attr("src","images/nuokesasi.png");
+
+					if(m == 1){
+						var m = "德莱文";
+						$("#westcardbg").click(function(){
+							$("#westcardbg").attr("style","display:none;");
+							$("#westcard").removeAttr("style");
+							$("#westcard").attr("style","border:5px solid #ADADAD; background-color: #292929;");
+							$("#westtestintro").attr("style","color: #E0C4F7;");
+						})
+
+						$("#westheropic").html("<img src='images/delaiwen.png'>");
+						$("#westtestintro").html("尊敬的" + wechatname + "<br/>您是荣耀行刑官，" + m );
+						$("#westwho").html("高手玩特技，菜鸟耍杂技，你需要做的除了练习，最好还得留个一模一样的胡须");
+						$("#westfrom").html("欢迎来到德莱联盟");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 2){
+						var m = "德莱厄斯";
+						$("#westcardbg").click(function(){
+							$("#westcardbg").attr("style","display:none;");
+							$("#westcard").removeAttr("style");
+							$("#westcard").attr("style","border:5px solid #9A1414; background-color: #2D1018;");
+							$("#westtestintro").attr("style","color: #E0BD9A;");
+						})
+
+						$("#westheropic").html("<img src='images/delaiesi.png'>");
+						$("#westtestintro").html("尊敬的" + wechatname + "<br/>您是诺克萨斯之手，" + m );
+						$("#westwho").html("别管胜负怎么样，要的就是一跃而起的豪情万丈。");
+						$("#westfrom").html("出来吧，我的力量");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 3){
+						var m = "泰隆";
+						$("#westcardbg").click(function(){
+							$("#westcardbg").attr("style","display:none;");
+							$("#westcard").removeAttr("style");
+							$("#westcard").attr("style","border:5px solid #B1B0B0; background-color: #1B1B1B;");
+							$("#westtestintro").attr("style","color: #c1c1c1;");
+						})
+
+						$("#westheropic").html("<img src='images/tailong.png'>");
+						$("#westtestintro").html("尊敬的" + wechatname + "<br/>您是刀锋之影，" + m );
+						$("#westwho").html("你一直在承受你这个身份不该有的帅气和潇洒。");
+						$("#westfrom").html("这把刀是我的最爱。");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 4){
+						var m = "赛恩";
+						$("#westcardbg").click(function(){
+							$("#westcardbg").attr("style","display:none;");
+							$("#westcard").removeAttr("style");
+							$("#westcard").attr("style","border:5px solid #715D5D; background-color: #270909;");
+							$("#westtestintro").attr("style","color: #bfbfbf;");
+						})
+
+						$("#westheropic").html("<img src='images/saien.png'>");
+						$("#westtestintro").html("尊敬的" + wechatname + "<br/>您是亡灵战神，" + m );
+						$("#westwho").html("路怒是病，请对这个世界温柔以待。");
+						$("#westfrom").html("亡灵司机，撞的就是你");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}
+				}else if(n == 2){
+					var n = "祖安";
+					var m = String(parseInt(Math.random()*(7-1+1) + 1)); //英雄
+					$("#westicon").attr("src","images/zuan.png");
+					
+					if(m == 1){
+						var m = "艾克";
+						$("#westcardbg").click(function(){
+							$("#westcardbg").attr("style","display:none;");
+							$("#westcard").removeAttr("style");
+							$("#westcard").attr("style","border:5px solid #BFB7AC; background-color: #170E04;");
+							$("#westtestintro").attr("style","color: #BFB7AC;");
+						})
+
+						$("#westheropic").html("<img src='images/aike.png'>");
+						$("#westtestintro").html("尊敬的" + wechatname + "<br/>您是时间刺客，" + m );
+						$("#westwho").html("杀马特也有春天，杀马特也可以拯救世界");
+						$("#westfrom").html("时间不站在你那边");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 2){
+						var m = "沃里克";
+						$("#westcardbg").click(function(){
+							$("#westcardbg").attr("style","display:none;");
+							$("#westcard").removeAttr("style");
+							$("#westcard").attr("style","border:5px solid #D25677; background-color: #332B36;");
+							$("#westtestintro").attr("style","color: #E0BD9A;");
+						})
+
+						$("#westheropic").html("<img src='images/wolike.png'>");
+						$("#westtestintro").html("尊敬的" + wechatname + "<br/>您是嗜血猎手，" + m );
+						$("#westwho").html("下次再有人说你是疯狗就不要客气了，人生总有需要捍卫的东西对吧疯狗。");
+						$("#westfrom").html("狩猎的时候到了");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 3){
+						var m = "辛吉德";
+						$("#westcardbg").click(function(){
+							$("#westcardbg").attr("style","display:none;");
+							$("#westcard").removeAttr("style");
+							$("#westcard").attr("style","border:5px solid #98604C; background-color: #31221D;");
+							$("#westtestintro").attr("style","color: #E0BD9A;");
+						})
+
+						$("#westheropic").html("<img src='images/xinjide.png'>");
+						$("#westtestintro").html("尊敬的" + wechatname + "<br/>您是炼金术士，" + m );
+						$("#westwho").html("不管瓶子里装的是啥，喝前摇一摇总是没错的");
+						$("#westfrom").html("是摇，还是不摇，这是一个问题");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 4){
+						var m = "费德提克";
+						$("#westcardbg").click(function(){
+							$("#westcardbg").attr("style","display:none;");
+							$("#westcard").removeAttr("style");
+							$("#westcard").attr("style","border:5px solid #98604C; background-color: #492D25;");
+							$("#westtestintro").attr("style","color: #E0BD9A;");
+						})
+
+						$("#westheropic").html("<img src='images/feidetike.png'>");
+						$("#westtestintro").html("尊敬的" + wechatname + "<br/>您是末日使者，" + m );
+						$("#westwho").html("人们都躲你也许并不是怕你，纯粹是大家不喜欢乌鸦嘴的本能");
+						$("#westfrom").html("我知道你怕");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 5){
+						var m = "图奇";
+						$("#westcardbg").click(function(){
+							$("#westcardbg").attr("style","display:none;");
+							$("#westcard").removeAttr("style");
+							$("#westcard").attr("style","border:5px solid #98604C; background-color: #492D25;");
+							$("#westtestintro").attr("style","color: #E0BD9A;");
+						})
+
+						$("#westheropic").html("<img src='images/tuqi.png'>");
+						$("#westtestintro").html("尊敬的" + wechatname + "<br/>您是瘟疫之源，" + m );
+						$("#westwho").html("如果战场失业了，可以考虑专业疏通下水道");
+						$("#westfrom").html("你看见过我的跳蚤吗");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 6){
+						var m = "蒙多";
+						$("#westcardbg").click(function(){
+							$("#westcardbg").attr("style","display:none;");
+							$("#westcard").removeAttr("style");
+							$("#westcard").attr("style","border:5px solid #989898; background-color: #2A282D;");
+							$("#westtestintro").attr("style","color: #ffffff;");
+						})
+
+						$("#westheropic").html("<img src='images/mengduo.png'>");
+						$("#westtestintro").html("尊敬的" + wechatname + "<br/>您是祖安狂人，" + m );
+						$("#westwho").html("你就是这么威武雄壮的一个套马汉，自由的步伐像风儿一样");
+						$("#westfrom").html("想去哪儿就去哪儿");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 7){
+						var m = "布里茨";
+						$("#westcardbg").click(function(){
+							$("#westcardbg").attr("style","display:none;");
+							$("#westcard").removeAttr("style");
+							$("#westcard").attr("style","border:5px solid #A5A5A5; background-color: #1A2631;");
+							$("#westtestintro").attr("style","color: #E0BD9A;");
+						})
+
+						$("#westheropic").html("<img src='images/bulici.png'>");
+						$("#westtestintro").html("尊敬的" + wechatname + "<br/>您是蒸汽机器人，" + m );
+						$("#westwho").html("升级前是山寨机，升级后是iphone6，请记住这是看脸的世界");
+						$("#westfrom").html("霸气！侧漏");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}
+				}
+ 
+				
+				$("#pager2").attr("style","display:none;");
+				$("#pager3").removeAttr("style");
+				$("#pager3").height($(window).height());
+				$("#westcardbg").removeAttr("style");
+			})
+
+			$("#westfeman").click(function(){
+				var n = String(parseInt(Math.random()*( 2 - 1 + 1 ) + 1)); //势力范围
+				
+				if(n == 1){
+					var n = "诺克萨斯";
+					var m = String(parseInt(Math.random()*(4-1+1) + 1)); //英雄
+					$("#westicon").attr("src","images/nuokesasi.png");
+
+					if(m == 1){
+						var m = "卡特琳娜";
+						$("#westcardbg").click(function(){
+							$("#westcardbg").attr("style","display:none;");
+							$("#westcard").removeAttr("style");
+							$("#westcard").attr("style","border:5px solid #CF7272; background-color: #362B2F;");
+							$("#westtestintro").attr("style","color: #cacaca;");
+						})
+
+						$("#westheropic").html("<img src='images/katelinna.png'>");
+						$("#westtestintro").html("尊敬的" + wechatname + "<br/>您是不祥之刃，" + m );
+						$("#westwho").html("你男朋友不会出轨，但我们并不确定他不会出柜。");
+						$("#westfrom").html("不会卖萌？那就用暴力");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+
+					}else if(m == 2){
+						var m = "卡西奥佩娅";
+						$("#westcardbg").click(function(){
+							$("#westcardbg").attr("style","display:none;");
+							$("#westcard").removeAttr("style");
+							$("#westcard").attr("style","border:5px solid #98604C; background-color: #492D25;");
+							$("#westtestintro").attr("style","color: #E0BD9A;");
+						})
+
+						$("#westheropic").html("<img src='images/kaxiaopeiya.png'>");
+						$("#westtestintro").html("尊敬的" + wechatname + "<br/>您是魔蛇之拥，" + m );
+						$("#westwho").html("教会了我们有的女人如果失去了美貌，就剩下蛇蝎心肠了。");
+						$("#westfrom").html("我知道我很美，只因我没大腿");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 3){
+						var m = "安妮";
+						$("#westcardbg").click(function(){
+							$("#westcardbg").attr("style","display:none;");
+							$("#westcard").removeAttr("style");
+							$("#westcard").attr("style","border:5px solid #D27092; background-color: #333333;");
+							$("#westtestintro").attr("style","color: #F5C1D0;");
+						})
+
+						$("#westheropic").html("<img src='images/anni.png'>");
+						$("#westtestintro").html("尊敬的" + wechatname + "<br/>您是黑暗之女，" + m );
+						$("#westwho").html("虽然拥有破坏世界的能量，但总在破坏世界那刻空大");
+						$("#westfrom").html("你看见过我的小熊吗？");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 4){
+						var m = "锐雯";
+						$("#westcardbg").click(function(){
+							$("#westcardbg").attr("style","display:none;");
+							$("#westcard").removeAttr("style");
+							$("#westcard").attr("style","border:5px solid #BDBDBD; background-color: #332B36;");
+							$("#westtestintro").attr("style","color: #D8D8D8;");
+						})
+
+						$("#westheropic").html("<img src='images/ruiwen.png'>");
+						$("#westtestintro").html("尊敬的" + wechatname + "<br/>您是放逐之刃，" + m );
+						$("#westwho").html("所谓光速QA，就是告诉对方你觉得自己萌！萌！哒！");
+						$("#westfrom").html("断剑重铸之日，暴龙归来之时");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}
+				}else if(n == 2){
+					var n = "祖安";
+					$("#westicon").attr("src","images/zuan.png");
+
+					var m = "迦娜";//英雄
+					$("#westcardbg").click(function(){
+						$("#westcardbg").attr("style","display:none;");
+						$("#westcard").removeAttr("style");
+						$("#westcard").attr("style","border:5px solid #72A7CF; background-color: #262B35;");
+						$("#westtestintro").attr("style","color: #EAEAEA;");
+					})
+
+					$("#westheropic").html("<img src='images/jiana.png'>");
+					$("#westtestintro").html("尊敬的" + wechatname + "<br/>您是风暴之怒，" + m );
+					$("#westwho").html("你跟林志玲的区别就是你真的把性感内衣穿上街了");
+					$("#westfrom").html("只要998，就能让你爽到不能呼吸");
+
+					f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+					// fenxiang(f_title);
+				}
+				
+ 
+				
+				$("#pager2").attr("style","display:none;");
+				$("#pager3").removeAttr("style");
+				$("#pager3").height($(window).height());
+				$("#westcardbg").removeAttr("style");
+			})
+
+
+			//北区
+			$("#north").click(function(){
+				$("#areaall").attr("class","northactive");
+				$("#north").attr("class","btn area areasmool");
+				$("#east").attr("class","btn area");
+				$("#west").attr("class","btn area");
+				$("#other").attr("class","btn area");
+				$("#eastarea").attr("style","display:none");
+				$("#westarea").attr("style","display:none");
+				$("#northarea").removeAttr("style");
+				$("#otherarea").attr("style","display:none");
+			})
+
+			$("#northman").click(function(){
+				var n = String(1); //势力范围
+				
+				if(n == 1){
+					var n = "弗雷尔卓德";
+					var m = String(parseInt(Math.random()*(3-1+1) + 1)); //英雄
+					$("#northicon").attr("src","images/fuleierzhuode.png");
+
+					if(m == 1){
+						var m = "布隆";
+						$("#northcardbg").click(function(){
+							$("#northcardbg").attr("style","display:none;");
+							$("#northcard").removeAttr("style");
+							$("#northcard").attr("style","border:5px solid #A77264; background-color: #2B2E36;");
+							$("#northtestintro").attr("style","color: #E0BD9A;");
+						})
+
+						$("#northheropic").html("<img src='images/bulong.png'>");
+						$("#northtestintro").html("尊敬的" + wechatname + "<br/>您是弗雷尔卓德之心，" + m );
+						$("#northwho").html("你拥有强壮的肌肉和能让人依靠的肩膀，而且听说你现在可以结婚了。");
+						$("#northfrom").html("我在冷艳的光环中，静静的看你装逼");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 2){
+						var m = "泰达米尔";
+						$("#northcardbg").click(function(){
+							$("#northcardbg").attr("style","display:none;");
+							$("#northcard").removeAttr("style");
+							$("#northcard").attr("style","border:5px solid #98604C; background-color: #252525;");
+							$("#northtestintro").attr("style","color: #E0BD9A;");
+						})
+
+						$("#northheropic").html("<img src='images/taidamier.png'>");
+						$("#northtestintro").html("尊敬的" + wechatname + "<br/>您是蛮族之王，" + m );
+						$("#northwho").html("5秒怎么了？时间长了你受不了！");
+						$("#northfrom").html("我的大刀早已饥渴难耐了");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 3){
+						var m = "沃利贝尔";
+						$("#northcardbg").click(function(){
+							$("#northcardbg").attr("style","display:none;");
+							$("#northcard").removeAttr("style");
+							$("#northcard").attr("style","border:5px solid #BDBDBD; background-color: #272727;");
+							$("#northtestintro").attr("style","color: #ffffff;");
+						})
+
+						$("#northheropic").html("<img src='images/wolibeier.png'>");
+						$("#northtestintro").html("尊敬的" + wechatname + "<br/>您是雷霆咆哮，" + m );
+						$("#northwho").html("你这家伙应该看过英雄联盟所有妹子的裙底吧混蛋？");
+						$("#northfrom").html("熊霸天下，狗熊的熊");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}
+
+				}
+ 
+				
+				$("#pager2").attr("style","display:none;");
+				$("#pager3").removeAttr("style");
+				$("#pager3").height($(window).height());
+				$("#northcardbg").removeAttr("style");
+			})
+
+			$("#northfeman").click(function(){
+				var n = String(1); //势力范围
+				
+				if(n == 1){
+					var n = "弗雷尔卓德";
+					var m = String(parseInt(Math.random()*(4-1+1) + 1)); //英雄
+					$("#northicon").attr("src","images/fuleierzhuode.png");
+
+					if(m == 1){
+						var m = "瑟庄妮";
+						$("#northcardbg").click(function(){
+							$("#northcardbg").attr("style","display:none;");
+							$("#northcard").removeAttr("style");
+							$("#northcard").attr("style","border:5px solid #BD7C97; background-color: #2F243E;");
+							$("#northtestintro").attr("style","color: #E0BD9A;");
+						})
+
+						$("#northheropic").html("<img src='images/sezhuangni.png'>");
+						$("#northtestintro").html("尊敬的" + wechatname + "<br/>您是凛冬之怒，" + m );
+						$("#northwho").html("好好的一个美少女，不骑白马，爱骑猪…");
+						$("#northfrom").html("你们将成为出色的…猪食");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 2){
+						var m = "艾希";
+						$("#northcardbg").click(function(){
+							$("#northcardbg").attr("style","display:none;");
+							$("#northcard").removeAttr("style");
+							$("#northcard").attr("style","border:5px solid #727ACF; background-color: #2F2B36;");
+							$("#northtestintro").attr("style","color: #D8BED2;");
+						})
+
+						$("#northheropic").html("<img src='images/aixi.png'>");
+						$("#northtestintro").html("尊敬的" + wechatname + "<br/>您是寒冰射手，" + m );
+						$("#northwho").html("女王，女王，女王。重要的事情说三遍。");
+						$("#northfrom").html("别怕，不就是把苹果放在你头上吗，我就近视800度而已，不会射偏");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 3){
+						var m = "艾尼维亚";
+						$("#northcardbg").click(function(){
+							$("#northcardbg").attr("style","display:none;");
+							$("#northcard").removeAttr("style");
+							$("#northcard").attr("style","border:5px solid #987B4C; background-color: #1D323E;");
+							$("#northtestintro").attr("style","color: #cfa972;");
+						})
+
+						$("#northheropic").html("<img src='images/ainiweiya.png'>");
+						$("#northtestintro").html("尊敬的" + wechatname + "<br/>您是冰晶凤凰，" + m );
+						$("#northwho").html("身为女人，你居然可以蛋疼。女汉子吧？");
+						$("#northfrom").html("我自己也很奇怪，为什么一团冰块能在天山飞呢？");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 4){
+						var m = "丽桑卓";
+						$("#northcardbg").click(function(){
+							$("#northcardbg").attr("style","display:none;");
+							$("#northcard").removeAttr("style");
+							$("#northcard").attr("style","border:5px solid #CF72AD; background-color: #312B36;");
+							$("#northtestintro").attr("style","color: #E0BD9A;");
+						})
+
+						$("#northheropic").html("<img src='images/lisangzhuo.png'>");
+						$("#northtestintro").html("尊敬的" + wechatname + "<br/>您是冰霜女巫，" + m );
+						$("#northwho").html("冷冷的冰雨在脸上胡乱的拍，你没事为何把自己冻成冰块？");
+						$("#northfrom").html("他们无法战胜寒冷，因为没穿羽绒服");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}
+
+				}
+ 
+				
+				$("#pager2").attr("style","display:none;");
+				$("#pager3").removeAttr("style");
+				$("#pager3").height($(window).height());
+				$("#northcardbg").removeAttr("style");
+			})
+
+			//乱入
+			$("#other").click(function(){
+				$("#areaall").attr("class","otheractive");
+				$("#other").attr("class","btn area areasmool");
+				$("#east").attr("class","btn area");
+				$("#west").attr("class","btn area");
+				$("#north").attr("class","btn area");
+				$("#eastarea").attr("style","display:none");
+				$("#westarea").attr("style","display:none");
+				$("#northarea").attr("style","display:none");
+				$("#otherarea").removeAttr("style");
+			})
+
+			$("#otherman").click(function(){
+				var n = String(parseInt(Math.random()*( 2 - 1 + 1 ) + 1)); //势力范围
+
+				if(n == 1){
+					var n = "皮尔特沃夫"; //势力范围
+					var m = "伊泽瑞尔"; //英雄
+					$("#othericon").attr("src","images/piertewofu.png");
+
+					$("#othercardbg").click(function(){
+						$("#othercardbg").attr("style","display:none;");
+						$("#othercard").removeAttr("style");
+						$("#othercard").attr("style","border:5px solid #9C7EA0; background-color: #492D25;");
+						$("#othertestintro").attr("style","color: #E3B6E4;");
+					})
+
+					$("#otherheropic").html("<img src='images/yizeruier.png'>");
+					$("#othertestintro").html("尊敬的" + wechatname + "<br/>您是探险家，" + m );
+					$("#otherwho").html("明明可以靠脸吃饭，你却要靠才华。");
+					$("#otherfrom").html("是时候表演真正的技术了！");
+
+					f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+					// fenxiang(f_title);
+				}else if(n == 2){
+					var n = "诺克萨斯"; //势力范围
+					var m = String(parseInt(Math.random()*(2-1+1) + 1)); //英雄
+
+					if(m == 1){
+						var m = "萨科"; //英雄
+							$("#othercardbg").click(function(){
+							$("#othercardbg").attr("style","display:none;");
+							$("#othercard").removeAttr("style");
+							$("#othercard").attr("style","border:5px solid #9C7EA0; background-color: #251205;");
+							$("#othertestintro").attr("style","color: #E3B6E4;");
+						})
+
+						$("#otherheropic").html("<img src='images/sake.png'>");
+						$("#othertestintro").html("尊敬的" + wechatname + "<br/>您是恶魔小丑，" + m );
+						$("#otherwho").html("人生如戏，全靠演技，不是心机婊就不揽瓷器活");
+						$("#otherfrom").html("来次魔术戏法怎样啊");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}else if(m == 2){
+						var m = "崔斯特"; //英雄
+							$("#othercardbg").click(function(){
+							$("#othercardbg").attr("style","display:none;");
+							$("#othercard").removeAttr("style");
+							$("#othercard").attr("style","border:5px solid #AD4C1E; background-color: #492D25;");
+							$("#othertestintro").attr("style","color: #ffffff;");
+						})
+
+						$("#otherheropic").html("<img src='images/cuisite.png'>");
+						$("#othertestintro").html("尊敬的" + wechatname + "<br/>您是卡牌大师，" + m );
+						$("#otherwho").html("你希望你能抽到的牌是6666，但大部分时候，你抽到的是2222");
+						$("#otherfrom").html("运气？不，是命运");
+
+						f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+						// fenxiang(f_title);
+					}
+				}
+
+				
+				$("#pager2").attr("style","display:none;");
+				$("#pager3").removeAttr("style");
+				$("#pager3").height($(window).height());
+				$("#othercardbg").removeAttr("style");
+			})
+
+			$("#otherfeman").click(function(){
+				var n = "皮特特沃夫"; //势力范围
+				var m = "凯特琳"; //英雄
+				$("#othericon").attr("src","images/piertewofu.png");
+
+				$("#othercardbg").click(function(){
+					$("#othercardbg").attr("style","display:none;");
+					$("#othercard").removeAttr("style");
+					$("#othercard").attr("style","border:5px solid #CF728E; background-color: #112933;");
+					$("#othertestintro").attr("style","color: #E0BD9A;");
+				})
+
+				$("#otherheropic").html("<img src='images/kaitelin.png'>");
+				$("#othertestintro").html("尊敬的" + wechatname + "<br/>您是皮城女警，" + m );
+				$("#otherwho").html("高冷而优雅的御姐很受欢迎，不过你的人气主要是因为裙子太短了。");
+				$("#otherfrom").html("脚印还很新鲜");
+
+				f_title = '我居然是英雄联盟里面的'+ m +'……那你呢！？';
+				// fenxiang(f_title);
+				
+				$("#pager2").attr("style","display:none;");
+				$("#pager3").removeAttr("style");
+				$("#pager3").height($(window).height());
+				$("#othercardbg").removeAttr("style");
+			})
+
+			var e = $("#goeast").val("0");
+			$("#sex").click(function(){
+				if($("#areaall").hasClass("eastactive")){
+					$("#pager2").attr("style","display:none;");
+					$("#eastpager").removeAttr("style");
+					$("#eastpager").height($(window).height());
+				}
+				if($("#areaall").hasClass("westactive")){
+					$("#pager2").attr("style","display:none;");
+					$("#westpager").removeAttr("style");
+					$("#westpager").height($(window).height());
+				}
+				if($("#areaall").hasClass("northactive")){
+					$("#pager2").attr("style","display:none;");
+					$("#northpager").removeAttr("style");
+					$("#northpager").height($(window).height());
+				}					
+				if($("#areaall").hasClass("otheractive")){
+					$("#pager2").attr("style","display:none;");
+					$("#otherpager").removeAttr("style");
+					$("#otherpager").height($(window).height());
+				}
+			})
+
+			$("#sharebtn").click(function(){
+				$("#sharearea").removeAttr("style");
+				$("#sharearea").height($(window).height());
+			})
+			$("#sharearea").click(function(){
+				$("#sharearea").attr("style","display:none;");
+			})
+			$("#focusbtn").click(function(){
+				$("#focusarea").removeAttr("style");
+				$("#focusarea").height($(window).height());
+			})
+			$("#close").click(function(){
+				$("#focusarea").attr("style","display:none;");
+			})
+		})
+
+		// function fenxiang(f_title){
+		// 	wx.ready(function () {
+		// 		// 在这里调用 API
+		// 		var shareData = {
+		// 			title: f_title,
+		// 			desc: '你是LOL里的哪个英雄？',
+		// 			link: "http://{$_SERVER ['HTTP_HOST']}/weixin/{$_GET['title']}.html",
+		// 			imgUrl: "http://{$_SERVER ['HTTP_HOST']}/Qifanhui/Wap/Public/{$_GET['title']}/images/image.jpg"
+		// 		};
+		// 		wx.onMenuShareAppMessage(shareData);
+		// 		wx.onMenuShareTimeline(shareData);
+		// 		wx.hideMenuItems({
+		// 			menuList: [
+		// 				'menuItem:openWithQQBrowser', // 阅读模式
+		// 				'menuItem:openWithSafari', // 分享到朋友圈
+		// 				'menuItem:copyUrl' // 复制链接
+		// 			]
+		// 		});   
+		// 	});
+		// }
+		</script>
+	</body>
+</html>
